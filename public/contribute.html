@@ -24,6 +24,7 @@
 
 
     <div class="redBg">
+    <div class="content">
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -34,19 +35,14 @@
                         Comic Database
                     </a>
                 </li>
-                <li>
+                 <li>
                     <a href="/profile.html">My Profile Page</a>
                 </li>
-                <li>
-                    
-                    <form action="/userdisplay">
-                        <input type = "submit" value="Search"/>
-                    </form>
-                </a>
+                <li>                    
+                    <a href = "/userdisplay"> Search </a>
                 </li>
                 <li>
-                    <form action="/addtodatabase">
-                        <input type = "submit" value="Contribute"/>
+                    <a href = "/addtodatabase"> Contribute </a>
                     </form>
                 </a>
                 </li>
@@ -69,16 +65,16 @@
 <br>
 <br>
 
- <button onclick="document.getElementById('id01').style.display='block'">Add Character</button>
+ <button onclick="document.getElementById('id01').style.display='block'" class="niceButtons" >Add Character</button>
 
-          <button onclick="document.getElementById('id02').style.display='block'">Add Comic</button>
-
-
+          <button onclick="document.getElementById('id02').style.display='block'" class="niceButtons" >Add Comic</button>
 
 
-          <button onclick="document.getElementById('id03').style.display='block'">Add Creator</button>
 
-          <button onclick="document.getElementById('id04').style.display='block'">Add Comic</button>
+
+          <button onclick="document.getElementById('id03').style.display='block'" class="niceButtons" >Add Creator</button>
+
+          <button onclick="document.getElementById('id04').style.display='block'" class="niceButtons" >Add Comic</button>
 
 
 <div id="id01" class="modal">

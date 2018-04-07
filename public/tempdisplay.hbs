@@ -22,6 +22,7 @@
   width: 50%;
   border: 1px solid #ddd;
   font-size: 18px;
+  color: black;
 }
 
 #comicTable th, #comicTable td {
@@ -49,6 +50,8 @@ td {
 </head>
 <body>
 
+<div class="redBg">
+  <div class="content">
 <div id="wrapper">
 
         <!-- Sidebar -->
@@ -62,16 +65,11 @@ td {
                 <li>
                     <a href="/profile.html">My Profile Page</a>
                 </li>
-                <li>
-                    
-                    <form action="/userdisplay">
-                        <input type = "submit" value="Search"/>
-                    </form>
-                </a>
+                <li>                    
+                    <a href = "/userdisplay"> Search </a>
                 </li>
                 <li>
-                    <form action="/addtodatabase">
-                        <input type = "submit" value="Contribute"/>
+                    <a href = "/addtodatabase"> Contribute </a>
                     </form>
                 </a>
                 </li>
@@ -82,27 +80,31 @@ td {
         </div>
         <!-- /#sidebar-wrapper -->
 
+<div id="page-content-wrapper">
+            <div class="container-fluid">
+
 <h1> All of our users </h1>
 
 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-
+<br>
+<br>
 <form action = "/comicdisplay">
-   <input type = "submit" value="Comics"/>
+   <input type = "submit" class="niceButtons" value="Comics"/>
 </form>
-
+<br>
 <form action = "/characterdisplay">
-   <input type = "submit" value="Characters"/>
+   <input type = "submit" class="niceButtons" value="Characters"/>
 </form>
-
+<br>
 <form action = "/seriesdisplay">
-   <input type = "submit" value="Series"/>
+   <input type = "submit" class="niceButtons" value="Series"/>
 </form>
-
+<br>
 <form action = "/creatordisplay">
-   <input type = "submit" value="Creators"/>
+   <input type = "submit" class="niceButtons" value="Creators"/>
 </form>
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
+<br>
+<input type="text"  style="width: 645 px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
 
 
 
@@ -125,6 +127,8 @@ td {
         {{/each}}
     </tbody>
 </table>
+</div>
+</div>
 </div>
 
 <script>
