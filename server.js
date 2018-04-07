@@ -12,6 +12,7 @@ const comicdisplay = require('./public/comicdisplay');
 const seriesdisplay = require('./public/seriesdisplay');
 const creatordisplay = require('./public/creatordisplay');
 const characterdisplay = require('./public/characterdisplay');
+const favoriteCreators = require('./public/favoriteCreators');
 
 const app = express();
 app.use(bodyParser.json());
@@ -79,17 +80,10 @@ app.get('/creatordisplay', creatordisplay.list);
 app.get('/characterdisplay', characterdisplay.list);
 
 
-app.post('/favoriteCreator', function(req, res) {
-  var keys = Object.keys(req.body);
-  var user = req.session.userid;
-  console.log(user);
-  console.log(keys.toString());
-  res.end();
-});
+app.post('/favoriteCreator', favoriteCreators.insertcreators);
 
 app.listen(app.get('port'), () => {
     console.log('Node application is running on PORT 8080');
 });
 
 module.exports = app;
-
