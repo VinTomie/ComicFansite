@@ -1,0 +1,8 @@
+SELECT distinct Series.*
+FROM favoriteSeries
+left join Series
+on favoriteSeries.series = Series.id
+WHERE favoriteSeries.user <> 'd@fg' AND series not in (
+SELECT series
+FROM favoriteSeries
+Where favoriteSeries.user = 'd@fg');
