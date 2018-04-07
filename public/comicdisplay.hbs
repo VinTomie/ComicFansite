@@ -121,6 +121,12 @@ td {
                 <td>{{this.title}}</td>
                 <td>{{this.issn}}</td>
                 <td>{{this.descrip}}...</td>
+		<td> <img src="{{this.thumbnail}}.{{this.thumbnail_extension}}" height="40" width ="40">
+                <td>
+                <form class="formClass" method="POST" action="/favoriteComics">
+                  <input type="submit" name="{{this.id}}" value="{{this.title}}">
+                </form>
+                </td>
             </tr>
         {{/each}}
     </tbody>
