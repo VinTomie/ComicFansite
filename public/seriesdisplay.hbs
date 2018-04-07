@@ -161,5 +161,17 @@ function myFunction() {
     });
     </script>
 
+<script>
+
+
+var pageHeight = comicTable.offsetHeight;
+var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+var fullHeight = pageHeight + h;
+
+$(".redBg").css('height', fullHeight);
+
+</script>
+
 </body>
 </html>
