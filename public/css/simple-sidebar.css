@@ -82,7 +82,7 @@ border-color: #743737;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   width: 100vw;
-  height: 100vh;
+  height: 400vh;
   border: none;
   color: rgba(255,255,255,1);
   -o-text-overflow: ellipsis;
@@ -98,15 +98,17 @@ border-color: #743737;
   -webkit-background-size: auto auto;
   background-size: auto auto;
   position: relative;
-  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
-  
   }
 
   .redBg .content{
   position: absolute;
   z-index:999;
   width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 
@@ -121,6 +123,8 @@ border-color: #743737;
   background-image: url("../images/marvel.jpg");
   background-size: cover;
   opacity: 0.3;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 

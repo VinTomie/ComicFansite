@@ -213,12 +213,94 @@
 // Get the modal
 
 
-var modal = document.getElementById('mode1');
+
  var btn = document.getElementById("id01");
-
-
  var span = document.getElementsByClassName("close")[0];
  btn.onclick = function() {
+
+var modal = document.getElementById('mode1');
+
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+</script>
+
+<script>
+// Get the modal
+
+
+
+ var btn = document.getElementById("id02");
+
+
+ var span = document.getElementsByClassName("close")[1];
+ btn.onclick = function() {
+  var modal = document.getElementById('mode2');
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+</script>
+
+<script>
+// Get the modal
+
+
+
+ var btn = document.getElementById("id03");
+
+
+ var span = document.getElementsByClassName("close")[2];
+ btn.onclick = function() {
+  var modal = document.getElementById('mode3');
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+</script>
+
+<script>
+// Get the modal
+
+
+
+ var btn = document.getElementById("id04");
+
+
+ var span = document.getElementsByClassName("close")[3];
+ btn.onclick = function() {
+  var modal = document.getElementById('mode4');
     modal.style.display = "block";
 }
 span.onclick = function() {
