@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Odysseus/Documents/GitHub/SQL-336/Retrieval Tools/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Odysseus/Documents/GitHub/SQL-336/Retrieval Tools/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Odysseus/Desktop/mysql-connector-java-5.1.46.tar/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Odysseus/Desktop/mysql-connector-java-5.1.46.tar/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_144/RedshiftJDBC42-1.2.12.1017.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

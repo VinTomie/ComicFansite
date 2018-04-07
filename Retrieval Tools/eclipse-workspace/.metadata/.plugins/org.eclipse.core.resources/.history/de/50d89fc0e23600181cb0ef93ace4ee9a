@@ -1,0 +1,92 @@
+import java.sql.*;
+import java.net.*;
+import java.io.*;
+import org.json.*;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+public class Junction{
+	
+	static String dbName = "comicdb.cc24nnrynf7v.us-east-2.rds.amazonaws.com";
+	static String username = "comic";
+	static String pass = "Comic";
+	static String requestURL = "https://gateway.marvel.com:443/v1/public/";
+	static String pubKey = "9c196989b2085c5747b0f8742cc479d2";
+	static String privKey = "4aa64352a182f42fde56ef36a87a0c378d8abb4b";
+
+	static String[] set = {"comics", "series", "characters", "creators"};
+	
+	public static void main(String args[]) throws Exception{
+			
+			String ts = timestamp();
+			InputStream is = new URL("https://gateway.marvel.com:443/v1/public/characters/1009148/comics?apikey=9c196989b2085c5747b0f8742cc479d2&ts=" + ts + "&hash=" + digest(ts)).openStream();
+			BufferedReader in = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+			String jsonText = readAll(in);
+			System.out.println(new JSONObject(jsonText));
+			
+	
+	}	
+	
+	public static URL getInfo(String target, int sup, int sub) throws Exception{
+		
+		URL result = null;
+		try{
+			result = new URL(requestURL 
+									+ set[sup]
+									+ "/" + target
+									+ "/" + set[sub]
+									+ "?apikey="
+									+ pubKey);			
+		}catch(Exception e){			
+			System.out.println("Failed to retrieve URL");
+		}
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	private static String readAll(Reader rd) throws IOException {
+	    StringBuilder sb = new StringBuilder();
+	    int cp;
+	    while ((cp = rd.read()) != -1) {
+	      sb.append((char) cp);
+	    }
+	    return sb.toString();
+	  }
+
+	public static String digest(String ts) {
+		
+		String original = ts + privKey + pubKey;
+		System.out.println(original + "@here");
+		StringBuffer sb = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(original.getBytes());
+			byte[] digest = md.digest();
+			sb = new StringBuffer();
+			for (byte b : digest) {
+				sb.append(String.format("%02x", b & 0xff));
+			}
+		}catch (Exception e) {
+			System.out.println("Something went wrong");
+		}
+
+		System.out.println("original:" + original);
+		System.out.println("digested(hex):" + sb.toString());
+		return sb.toString();
+	}
+	
+	public static String timestamp() {
+		
+		Timestamp ts = new Timestamp(System.currentTimeMillis());;
+		Date date = new Date();
+		date.setTime(ts.getTime());
+		String formattedDate = new SimpleDateFormat("YdmHMS").format(date);
+		return formattedDate;
+	}
+}

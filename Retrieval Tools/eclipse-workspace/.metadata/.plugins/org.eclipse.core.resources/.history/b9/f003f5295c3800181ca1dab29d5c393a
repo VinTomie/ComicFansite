@@ -1,0 +1,253 @@
+
+import java.sql.*;
+import java.net.*;
+import java.io.*;
+import org.json.*;
+import java.nio.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Junction{
+	
+	static String PUBLIC_DNS = "ec2-18-222-96-43.us-east-2.compute.amazonaws.com";
+	static String PORT = "3306";
+	static String endpoint = "comicdb.cc24nnrynf7v.us-east-2.rds.amazonaws.com";
+	static String username = "comic";
+	static String pass = "Comic";
+	static String requestURL = "https://gateway.marvel.com:443/v1/public/";
+	static String pubKey = "9c196989b2085c5747b0f8742cc479d2";
+	static String privKey = "4aa64352a182f42fde56ef36a87a0c378d8abb4b";
+	static String abom = "1009148";
+	static Connection connect = null;
+    static Statement statement = null;
+    static PreparedStatement preparedStatement = null;
+    static ResultSet resultSet = null;
+    static File debug;
+	
+	static String[] set = {"comics", "series", "characters", "creators"};
+	
+	public static void main(String args[]) throws Exception{
+		
+		try {
+			debug = new File("debug.txt");
+		}catch(Exception e) {
+			System.out.println("Something happened with opening the file");
+		}
+		
+		ArrayList<Integer> targtids = getTargetDatum();
+		int[] resultids = getResultDatum(abom);
+		
+		
+		
+	}	
+	
+	/*
+	 * Make request url for calls to Marvel api
+	 */
+	public static URL getInfo(String target, int sup, int sub) throws Exception{
+		
+		URL result = null;
+		try{
+			result = new URL(requestURL 
+									+ set[sup]
+									+ "/" + target
+									+ "/" + set[sub]
+									+ "?apikey="
+									+ pubKey);			
+		}catch(Exception e){			
+			System.out.println("Failed to retrieve URL");
+		}
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	
+	
+	private static String readAll(Reader rd) throws IOException {
+	    StringBuilder sb = new StringBuilder();
+	    int cp;
+	    while ((cp = rd.read()) != -1) {
+	      sb.append((char) cp);
+	    }
+	    return sb.toString();
+	  }
+	
+	
+	/* 
+	 * Used to make encrypted key for api request
+	 */
+	public static String digest(String ts) {
+		
+		String original = ts + privKey + pubKey;
+		System.out.println(original + "@here");
+		StringBuffer sb = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(original.getBytes());
+			byte[] digest = md.digest();
+			sb = new StringBuffer();
+			for (byte b : digest) {
+				sb.append(String.format("%02x", b & 0xff));
+			}
+		}catch (Exception e) {
+			System.out.println("Something went wrong");
+		}
+
+		System.out.println("original:" + original);
+		System.out.println("digested(hex):" + sb.toString());
+		return sb.toString();
+	}
+	
+	
+	/*
+	 * Get date used in making url
+	 */
+	public static String timestamp() {
+		
+		Timestamp ts = new Timestamp(System.currentTimeMillis());;
+		Date date = new Date();
+		date.setTime(ts.getTime());
+		String formattedDate = new SimpleDateFormat("YdmHMS").format(date);
+		return formattedDate;
+	}
+	
+
+	
+	public static void writeTo(String json, String file) throws Exception{
+		PrintWriter writer = new PrintWriter(file, "UTF-8");
+		writer.write(json);
+		writer.close();
+	}
+	
+	/*
+	 * Get JSON object from respective url made from request Url
+	 */
+	public static JSONObject getJSON(String id) throws Exception{
+		
+		try{
+			String ts = timestamp();
+			InputStream is = new URL(requestURL + set[2] + "/" + id + "/" + set[0] + "?apikey=" + pubKey + "&ts=" + ts + "&hash=" + digest(ts)).openStream();
+			BufferedReader in = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+			String jsonText = readAll(in);
+			is.close();
+			return new JSONObject(jsonText);
+		}catch (IOException e) {
+			System.out.println("Something went wrong while getting JSON");
+			return null;
+		}
+	}
+	
+	
+	/*
+	 * Connects program to ComicArchive
+	 */
+	public static void connectAWS() throws Exception{
+		
+	    try {
+	    	Class.forName("com.mysql.jdbc.Driver");
+	    	// Setup the connection with the DB
+	    	connect = DriverManager
+                .getConnection("jdbc:mysql://" + endpoint + "/" + "ComicArchive?"
+                        + "user=comic&password=Comic");
+	    	System.out.println("Connected");
+	    	
+	    }catch(Exception e) {
+	    	System.out.println("Whoops! This didn't work.");
+	    }
+        
+
+	}
+	
+	/*
+	 * Writes query to database
+	 */
+	public static void sendQuery(String query) throws Exception{
+		
+		try {
+			statement = connect.createStatement();
+	    	System.out.println("Made the statement");
+	    	resultSet = statement.executeQuery(query);
+	    	System.out.println("Made the query");
+	    	
+		}catch(Exception e) {
+			System.out.println("Something went wrong with the query...You should look into that");
+		}
+		
+		
+	}
+	
+	/*
+	 * Closes connection to AWS database
+	 */
+	public static void closeAWS() throws Exception {
+		
+		try{
+			resultSet.close();
+			statement.close();
+	    	connect.close();
+		}catch(Exception e) {
+			System.out.println("Hmmm...Can't seem to close this");
+		}
+    	
+	}
+	
+	/*
+	 * Writes the results of a query
+	 */
+	public static int writeResultSet(ResultSet resultSet) throws SQLException {
+		//Use for debugging
+		 int character = resultSet.getInt("id");
+         System.out.println(character);
+         return character;
+    }
+	
+	/*
+	 * Parses a selected JSON object for id numbers
+	 */
+	public static int[] getResultDatum(String id) throws Exception{
+		
+		int[] ids;
+		try {
+			JSONObject obj = getJSON(id).getJSONObject("data");
+			JSONArray list = obj.getJSONArray("results");
+			ids = new int[list.length()];
+			for(int i = 0; i < list.length(); i++) {
+				ids[i] = list.getJSONObject(i).getInt("id");
+				//System.out.println();
+				
+			}
+			System.out.println("Got datum for id =" + id);
+			return ids;
+		}catch(Exception e) {
+			System.out.println("Something happened while getting the data from the JSON");
+			return new int[0];
+		}
+		
+	}
+	
+	public static ArrayList<Integer> getTargetDatum() throws Exception{
+		
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		connectAWS();
+		sendQuery("select id from ComicArchive.Characters");
+		while (resultSet.next()) {
+			
+			ids.add(writeResultSet(resultSet));
+			
+		}
+	    System.out.println("wrote the result");
+		closeAWS();
+		return ids;
+	
+	}
+}
