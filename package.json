@@ -1,0 +1,32 @@
+{
+  "name": "SQL-336",
+  "version": "1.0.0",
+  "description": "Creating a full stack project with SQL, JavaScript, &amp; Node.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickloughrey/SQL-336.git"
+  },
+  "keywords": [],
+  "author": "Patrick Loughrey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickloughrey/SQL-336/issues"
+  },
+  "homepage": "https://github.com/patrickloughrey/SQL-336#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "consolidate": "^0.15.1",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "handlebars": "^4.0.11",
+    "hbs": "^4.0.1",
+    "mysql": "^2.15.0",
+    "swig": "^1.4.2"
+  }
+}

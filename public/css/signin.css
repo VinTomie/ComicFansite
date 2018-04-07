@@ -1,0 +1,274 @@
+html,
+body {
+  height: 100%;
+  background-image: url("../images/marvel.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  font-family: 'Marvel', sans-serif;
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin-top: 415px;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: black;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-color: black;
+}
+
+/* Full-width input fields */
+input[type=text], input[placeholder="Enter Password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+.signupbtn {
+  padding: 14px 20px;
+  background-color: #16FA39;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+  margin-bottom: 25px:
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    z-index: -1;
+
+
+}
+
+/* Avatar image */
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+
+.container {
+  padding: 16px;
+
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+        display: block;
+        float: none;
+    }
+
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+
+.small {
+  margin: .5em;
+  font-size: 17px;
+}
+
+.small > a {
+  color: black;
+}
+
+.small > a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.btn {
+  color: white;
+  background-color: black;
+  border-color:black;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #8b0000;
+  border-color: black;
+}
+
+
+#tfheader{
+        background-color:#c3dfef;
+    }
+    #tfnewsearch{
+        float:right;
+        padding:20px;
+    }
+    .tftextinput{
+        margin: 0;
+        padding: 5px 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:14px;
+        border:1px solid #0076a3; border-right:0px;
+        border-top-left-radius: 5px 5px;
+        border-bottom-left-radius: 5px 5px;
+    }
+    .tfbutton {
+        margin: 0;
+        padding: 5px 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:14px;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        border: solid 1px #0076a3; border-right:0px;
+        background: #0095cd;
+        background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+        background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+        border-top-right-radius: 5px 5px;
+        border-bottom-right-radius: 5px 5px;
+    }
+    .tfbutton:hover {
+        text-decoration: none;
+        background: #007ead;
+        background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+        background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+    }
+    /* Fixes submit button height problem in Firefox */
+    .tfbutton::-moz-focus-inner {
+      border: 0;
+    }
+    .tfclear{
+        clear:both;
+    }
+
+
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+

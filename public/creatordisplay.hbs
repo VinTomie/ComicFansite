@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#comicTable {
+  border-collapse: collapse;
+  width: 50%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#comicTable th, #comicTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#comicTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#comicTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+	margin-bottom: 25px;
+}
+</style>
+</head>
+
+<!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+<body>
+
+<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Comic Database
+                    </a>
+                </li>
+                <li>
+                    <a href="#">My Profile Page</a>
+                </li>
+                <li>
+                    <form action="/userdisplay">
+                        <input type = "submit" value="Search"/>
+                    </form>
+                </li>
+                <li>
+                    <form action="/addtodatabase">
+                        <input type = "submit" value="Contribute"/>
+                    </form>
+                </li>
+                <li>
+                    <a href="#">Account Settings</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+            </ul>
+        </div>
+
+<h1> All of our Creators </h1>
+
+<form action = "/comicdisplay">
+   <input type = "submit" value="Comics"/>
+</form>
+
+<form action = "/characterdisplay">
+   <input type = "submit" value="Characters"/>
+</form>
+
+<form action = "/seriesdisplay">
+   <input type = "submit" value="Series"/>
+</form>
+
+<form action = "/creatordisplay">
+   <input type = "submit" value="Creators"/>
+</form>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
+
+
+<table id="comicTable">
+    <tbody>
+    		<tr class = "boc">
+    			<th style = "width: 20%;">Creator ID</th>
+    			<th style = "width: 20%;">Creator First Name</th>
+    			<th style = "width: 20%;">Creator Last Name</th>
+    		</tr>
+        {{#each data}}
+            <tr class ="head">
+                <td>{{this.id}}</td>
+                <td>{{this.fname}}</td>
+                <td>{{this.lname}}</td>
+		<td>
+                <form class="formClass" method="POST" action="/favoriteCreator">
+                  <input type="submit" name="{{this.id}}" value="{{this.fname}} {{this.lname}}">
+                </form>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("comicTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+</html>
