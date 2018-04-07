@@ -79,10 +79,10 @@ border-color: #743737;
 .redBg {
 
   -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
+  -moz-box-sizing: content-box; 
   box-sizing: content-box;
   width: 100vw;
-  height: 400vh;
+  height: 100vh;
   border: none;
   color: rgba(255,255,255,1);
   -o-text-overflow: ellipsis;
