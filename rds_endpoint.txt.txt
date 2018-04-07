@@ -1,0 +1,4 @@
+Endpoint:
+comicdb.cc24nnrynf7v.us-east-2.rds.amazonaws.com
+
+pass: comicconcomicdb.cc24nnrynf7v.us-east-2.rds.amazonaws.com

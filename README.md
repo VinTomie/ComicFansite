@@ -4,10 +4,6 @@
 ### Heroku URL & Connection Details
 ---
 
-* Endpoint: icopoghru9oezxh8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-* Username: fjjh4vmqv3h606dc
-* Password: uz4isx8cxrnchaxi
-
 * URL for AWS: https://whispering-ravine-45227.herokuapp.com
 
 ### AWS Database Connection Information
