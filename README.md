@@ -3,9 +3,6 @@
 
 ### Heroku URL & Connection Details
 ---
-* URL: https://fierce-stream-31178.herokuapp.com/
-* Remote Heroku Database Connection:
-![Remote Heroku Database Connection](./public/images/heroku.png)
 
 * Endpoint: icopoghru9oezxh8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
 * Username: fjjh4vmqv3h606dc
