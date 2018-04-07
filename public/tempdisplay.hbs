@@ -5,6 +5,7 @@
 <style>
 * {
   box-sizing: border-box;
+
 }
 
 #myInput {
@@ -15,6 +16,7 @@
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+  
 }
 
 #comicTable {
@@ -50,6 +52,7 @@ td {
 </head>
 <body>
 
+
 <div class="redBg">
   <div class="content">
 <div id="wrapper">
@@ -62,7 +65,7 @@ td {
                         Comic Database
                     </a>
                 </li>
-                <li>
+                 <li>
                     <a href="/profile.html">My Profile Page</a>
                 </li>
                 <li>                    
@@ -89,19 +92,19 @@ td {
 <br>
 <br>
 <form action = "/comicdisplay">
-   <input type = "submit" class="niceButtons" value="Comics"/>
+   <input type = "submit" class="niceButtons" value="Search Comics"/>
 </form>
 <br>
 <form action = "/characterdisplay">
-   <input type = "submit" class="niceButtons" value="Characters"/>
+   <input type = "submit" class="niceButtons" value="Search Characters"/>
 </form>
 <br>
 <form action = "/seriesdisplay">
-   <input type = "submit" class="niceButtons" value="Series"/>
+   <input type = "submit" class="niceButtons" value="Search Series"/>
 </form>
 <br>
 <form action = "/creatordisplay">
-   <input type = "submit" class="niceButtons" value="Creators"/>
+   <input type = "submit" class="niceButtons" value="Search Creators"/>
 </form>
 <br>
 <input type="text"  style="width: 645 px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
@@ -162,6 +165,7 @@ function myFunction() {
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+
 
 </body>
 </html>

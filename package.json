@@ -23,6 +23,7 @@
     "consolidate": "^0.15.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "express-server": "^0.7.0",
     "express-session": "^1.15.6",
     "handlebars": "^4.0.11",
     "hbs": "^4.0.1",

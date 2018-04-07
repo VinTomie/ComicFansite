@@ -22,6 +22,7 @@
   width: 50%;
   border: 1px solid #ddd;
   font-size: 18px;
+  color: black;
 }
 
 #comicTable th, #comicTable td {
@@ -50,57 +51,61 @@ td {
 </head>
 <body>
 
-<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
 
+<div class="redBg">
+  <div class="content">
 <div id="wrapper">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href= "#">
                         Comic Database
                     </a>
                 </li>
-                <li>
-                    <a href="#">My Profile Page</a>
+                 <li>
+                    <a href="/profile.html">My Profile Page</a>
+                </li>
+                <li>                    
+                    <a href = "/userdisplay"> Search </a>
                 </li>
                 <li>
-                    <form action="/userdisplay">
-                        <input type = "submit" value="Search"/>
+                    <a href = "/addtodatabase"> Contribute </a>
                     </form>
+                </a>
                 </li>
                 <li>
-                    <form action="/addtodatabase">
-                        <input type = "submit" value="Contribute"/>
-                    </form>
-                </li>
-                <li>
-                    <a href="#">Account Settings</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
+                    <a href="/about.html">About</a>
                 </li>
             </ul>
         </div>
+        <!-- /#sidebar-wrapper -->
+
+<div id="page-content-wrapper">
+            <div class="container-fluid">
 
 <h1> All of our Series </h1>
 
+<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+<br>
+<br>
 <form action = "/comicdisplay">
-   <input type = "submit" value="Comics"/>
+   <input type = "submit" class="niceButtons" value="Search Comics"/>
 </form>
-
+<br>
 <form action = "/characterdisplay">
-   <input type = "submit" value="Characters"/>
+   <input type = "submit" class="niceButtons" value="Search Characters"/>
 </form>
-
+<br>
 <form action = "/seriesdisplay">
-   <input type = "submit" value="Series"/>
+   <input type = "submit" class="niceButtons" value="Search Series"/>
 </form>
-
+<br>
 <form action = "/creatordisplay">
-   <input type = "submit" value="Creators"/>
+   <input type = "submit" class="niceButtons" value="Search Creators"/>
 </form>
+<br>
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
 
@@ -121,6 +126,8 @@ td {
         {{/each}}
     </tbody>
 </table>
+</div>
+</div>
 </div>
 
 <script>
