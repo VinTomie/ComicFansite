@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#favoriteCharacters {
+  border-collapse: collapse;
+  width: 50%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#favoriteCharacters th, #favoriteCharacters td {
+  text-align: left;
+  padding: 12px;
+}
+
+#favoriteCharacters tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#favoriteCharacters tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+    margin-bottom: 25px;
+}
+</style>
+
+</head>
+
+<!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+<body>
+
+<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Comic Database
+                    </a>
+                </li>
+                <li>
+                    <a href="#">My Profile Page</a>
+                </li>
+                <li>
+                    <form action="/userdisplay">
+                        <input type = "submit" value="Search"/>
+                    </form>
+                </li>
+                <li>
+                    <form action="/addtodatabase">
+                        <input type = "submit" value="Contribute"/>
+                    </form>
+                </li>
+                <li>
+                    <a href="#">Account Settings</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <h1> {{name}}'s Favorite Characters </h1>
+
+        <!-- Page Content -->
+        <table id="favoriteCharacters">
+        <tbody>
+            <tr class = "boc">
+                <th style = "width: 20%;">Character Name</th>
+                <th style = "width: 20%;">Character Description</th>
+                <th style = "width: 20%;">Character image</th>
+            </tr>
+            {{#each characters}}
+            <tr class ="head">
+                <td>{{this.cname}}</td>
+                <td>{{this.description}}</td>
+                <td> <img src = "{{this.thumbnail}}.{{this.thumbnail_extension}}" height="40" width="40">
+                <td>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
