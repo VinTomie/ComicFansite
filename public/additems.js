@@ -3,7 +3,7 @@ exports.addseries = (req, res) => {
 
     var random = Math.random() * 15000;
 
-    var sql = ('SELECT COUNT(*) FROM Series WHERE id = ?', randomnum);
+    var sql = ('SELECT COUNT(*) FROM Series WHERE id = ?', random);
     while (db.query(sql) > 0)
     {
         random = Math.floor(Math.random() * 10000) + 10000;
@@ -21,7 +21,7 @@ exports.addseries = (req, res) => {
             console.log("Error: ",error);
             res.send({
                 "code": 400,
-                "failed": "Error occurred"
+                "failed": "Error occurred, probably invalid or duplicate"
             });
         } else {
 
@@ -30,7 +30,7 @@ exports.addseries = (req, res) => {
                 "code": 200,
                 "success": "User successfully signed up"
             });*/
-            //res.render('profile.html', {fname: User.fname});
+            //res.render('addeditem', {fname: req.session.firstname});
         }
     });
 }
@@ -40,7 +40,7 @@ exports.addcomic = (req, res) => {
 
     var random = Math.random() * 15000;
 
-    var sql = ('SELECT COUNT(*) FROM Comics WHERE id = ?', randomnum);
+    var sql = ('SELECT COUNT(*) FROM Comics WHERE id = ?', random);
     while (db.query(sql) > 0)
     {
         random = Math.floor(Math.random() * 10000) + 10000;
@@ -59,7 +59,7 @@ exports.addcomic = (req, res) => {
             console.log("Error: ",error);
             res.send({
                 "code": 400,
-                "failed": "Error occurred"
+                "failed": "Error occurred, invalid or duplicate"
             });
         } else {
 
@@ -68,7 +68,7 @@ exports.addcomic = (req, res) => {
                 "code": 200,
                 "success": "User successfully signed up"
             });*/
-            //res.render('profile.html', {fname: User.fname});
+            //res.render('addeditem', {fname: req.session.firstname});
         }
     });
 }
@@ -78,7 +78,7 @@ exports.addcreator = (req, res) => {
 
     var random = Math.random() * 15000;
 
-    var sql = ('SELECT COUNT(*) FROM Comics WHERE id = ?', randomnum);
+    var sql = ('SELECT COUNT(*) FROM Comics WHERE id = ?', random);
     while (db.query(sql) > 0)
     {
         random = Math.floor(Math.random() * 10000) + 10000;
@@ -96,7 +96,7 @@ exports.addcreator = (req, res) => {
             console.log("Error: ",error);
             res.send({
                 "code": 400,
-                "failed": "Error occurred"
+                "failed": "Error occurred, invalid or duplicate"
             });
         } else {
 
@@ -105,7 +105,7 @@ exports.addcreator = (req, res) => {
                 "code": 200,
                 "success": "User successfully signed up"
             });*/
-            //res.render('profile.html', {fname: User.fname});
+            //res.render('addeditem', {fname: req.session.firstname});
         }
     });
 }
@@ -115,7 +115,7 @@ exports.addchar = (req, res) => {
 
     var random = Math.random() * 15000;
 
-    var sql = ('SELECT COUNT(*) FROM Characters WHERE id = ?', randomnum);
+    var sql = ('SELECT COUNT(*) FROM Characters WHERE id = ?', random);
     while (db.query(sql) > 0)
     {
         random = Math.floor(Math.random() * 10000) + 10000;
@@ -123,7 +123,7 @@ exports.addchar = (req, res) => {
     const Character = {
         'id': random,
         'cname': req.body.namechar,
-        'descrip': req.body.chardescrip,
+        'descrip': req.body.paragraph_text,
         'thumbnail': null,
         'thumnail_ext': null
     }
@@ -132,7 +132,7 @@ exports.addchar = (req, res) => {
             console.log("Error: ",error);
             res.send({
                 "code": 400,
-                "failed": "Error occurred"
+                "failed": "Error occurred, invalid or duplicate"
             });
         } else {
 
@@ -141,7 +141,7 @@ exports.addchar = (req, res) => {
                 "code": 200,
                 "success": "User successfully signed up"
             });*/
-            //res.render('profile.html', {fname: User.fname});
+            //res.render('addeditem', {fname: req.session.firstname});
         }
     });
 }
