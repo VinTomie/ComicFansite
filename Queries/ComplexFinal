@@ -1,3 +1,5 @@
+
+//find the reccomended series for the user
 SELECT distinct Series.*
 FROM favoriteSeries
 left join Series
@@ -6,3 +8,24 @@ WHERE favoriteSeries.user <> 'd@fg' AND series not in (
 SELECT series
 FROM favoriteSeries
 Where favoriteSeries.user = 'd@fg');
+
+//find whats trending based on what is the most liked series
+SELECT Series.*, count(Series) 
+FROM favoriteSeries 
+right join Series on favoriteSeries.series = Series.id 
+group by series 
+order by count(series) desc 
+limit 10;
+
+//find the series that the user favorited
+SELECT Series.id, Series.title, Series.description, Series.thumbnail, Series.extension
+FROM favoriteSeries
+JOIN Series on (Series.id = series AND user = ?)
+
+//find what characters should be presented for the user to favorite (do not show characters they have already favorited)
+SELECT C.* 
+from Characters C 
+Where C.id not in 
+(select charID from favoriteCharacters where user = ?)
+
+
