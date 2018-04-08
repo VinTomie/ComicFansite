@@ -5,16 +5,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 * {
@@ -65,72 +55,105 @@ td {
     <link href="css/simple-sidebar.css" rel="stylesheet">
 <body>
 
-<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-
-
-<body>
-
-    <div id="wrapper">
+<div class="redBg">
+  <div class="content">
+<div id="wrapper">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href= "#">
                         Comic Database
                     </a>
                 </li>
                 <li>
-                    <a href="#">My Profile Page</a>
+                    <a href="/profile">My Profile Page</a>
+                </li>
+                <li>                    
+                    <a href = "/userdisplay"> Search </a>
                 </li>
                 <li>
-                    <form action="/userdisplay">
-                        <input type = "submit" value="Search"/>
-                    </form>
+                    <a href = "/addtodatabase"> Contribute </a>
                 </li>
                 <li>
-                    <form action="/addtodatabase">
-                        <input type = "submit" value="Contribute"/>
-                    </form>
+                    <a href="/about.html">About</a>
                 </li>
                 <li>
-                    <a href="#">Account Settings</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
+                    <a href="/favorites">Favorites </a>
                 </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
-        <h1> {{name}}'s Favorite Creators </h1>
+<div id="page-content-wrapper">
+            <div class="container-fluid">
 
-        <!-- Page Content -->
-        <table id="favoriteCreators">
-        <tbody>
+<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+<br>
+<br>
+<form action = "/comicdisplay">
+   <input type = "submit" class="niceButtons" value="Search Comics"/>
+</form>
+<br>
+<form action = "/characterdisplay">
+   <input type = "submit" class="niceButtons" value="Search Characters"/>
+</form>
+<br>
+<form action = "/seriesdisplay">
+   <input type = "submit" class="niceButtons" value="Search Series"/>
+</form>
+<br>
+<form action = "/creatordisplay">
+   <input type = "submit" class="niceButtons" value="Search Creators"/>
+</form>
+<br>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
+
+<h1> {{{name}}}'s Favorite Creators </h1>
+
+
+<table id="favoriteCreators">
+    <tbody>
             <tr class = "boc">
                 <th style = "width: 20%;">Creator ID</th>
                 <th style = "width: 20%;">Creator First Name</th>
                 <th style = "width: 20%;">Creator Last Name</th>
             </tr>
-            {{#each creators}}
+        {{#each creators}}
             <tr class ="head">
                 <td>{{this.id}}</td>
                 <td>{{this.fname}}</td>
                 <td>{{this.lname}}</td>
-                <td>
-                <form class="formClass" method="POST" action="/unfavoriteCreator">
-                  <input type="submit" name="{{this.id}}" value="{{this.fname}} {{this.lname}}">
-                </form>
-                </td>
+
             </tr>
-            {{/each}}
-        </tbody>
-        </table>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
 
-    </div>
-    <!-- /#wrapper -->
-
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("favoriteCreators");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
