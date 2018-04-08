@@ -45,15 +45,27 @@ exports.insertcreators = (req, res) => {
   	}
   	else {
   		console.log("We found some dudes");
+      console.log(results);
   		res.render('favoriteCreators', {creators: results, name: req.session.firstname});
   	}
   });
+}
 
+exports.favorites = (req, res) => {
+  var userid = req.session.userid;
 
-
-
-
-
+  var creators = ('SELECT Creators.id, Creators.fname, Creators.lname FROM favoriteCreators JOIN Creators on (Creators.id = favoriteCreators.creator AND favoriteCreators.user = ?)');
+  db.query(creators, [userid], (error, results, fields) => {
+    if (error) {
+      console.log("Error: ", error);
+      res.send("error");
+    }
+    else {
+      console.log("We are rendering the page");
+      res.render('favoriteCreators', {creators: results, name: req.session.firstname});
+    }
+  });
 
 }
+
 
