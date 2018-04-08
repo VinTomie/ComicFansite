@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#favoriteComics {
+  border-collapse: collapse;
+  width: 50%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#favoriteComics th, #favoriteComics td {
+  text-align: left;
+  padding: 12px;
+}
+
+#favoriteComics tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#favoriteComics tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+    margin-bottom: 25px;
+}
+</style>
+
+</head>
+
+<!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+<body>
+
+<div class="redBg">
+  <div class="content">
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href= "#">
+                        Comic Database
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">My Profile Page</a>
+                </li>
+                <li>                    
+                    <a href = "/userdisplay"> Search </a>
+                </li>
+                <li>
+                    <a href = "/addtodatabase"> Contribute </a>
+                </li>
+                <li>
+                    <a href="/about.html">About</a>
+                </li>
+                <li>
+                    <a href="/favorites">Favorites </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+<div id="page-content-wrapper">
+            <div class="container-fluid">
+
+<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+<br>
+<br>
+<form action = "/comicdisplay">
+   <input type = "submit" class="niceButtons" value="Search Comics"/>
+</form>
+<br>
+<form action = "/characterdisplay">
+   <input type = "submit" class="niceButtons" value="Search Characters"/>
+</form>
+<br>
+<form action = "/seriesdisplay">
+   <input type = "submit" class="niceButtons" value="Search Series"/>
+</form>
+<br>
+<form action = "/creatordisplay">
+   <input type = "submit" class="niceButtons" value="Search Creators"/>
+</form>
+<br>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a first name">
+
+<h1> {{{name}}}'s Favorite Comics </h1>
+
+
+<table id="favoriteComics">
+    <tbody>
+            <tr class = "boc">
+                <th style = "width: 20%;">Comic ID</th>
+                <th style = "width: 20%;">Comic Title</th>
+                <th style = "width: 20%;">Description</th>
+                <th style = "width: 20%;">Comic Image</th>
+            </tr>
+        {{#each comics}}
+            <tr class ="head">
+                <td>{{this.id}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td> <img src="{{this.thumbnail}}.{{this.thumbnail_extension}}" height="40" width="40"> </td>
+
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("favoriteComics");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
