@@ -14,6 +14,11 @@ const creatordisplay = require('./public/creatordisplay');
 const characterdisplay = require('./public/characterdisplay');
 const favoriteCreators = require('./public/favoriteCreators');
 const favoriteCharacters = require('./public/favoriteCharacters');
+const favoriteComics = require('./public/favoriteComics');
+const favoriteSeries = require('./public/favoriteSeries');
+const recommendations = require('./public/recommendations');
+const additems = require('./public/additems');
+const getprofile = require('./public/getprofile');
 
 
 const app = express();
@@ -76,6 +81,12 @@ app.get('/addtodatabase', function(req, res) {
   res.render('contribute.html');
 });
 
+app.get('/favorites', function(req, res) {
+  res.render('favorites', {fname: req.session.firstname});
+})
+
+app.get('/profile', getprofile.profile);
+
 app.get('/comicdisplay', comicdisplay.list);
 app.get('/seriesdisplay', seriesdisplay.list);
 app.get('/creatordisplay', creatordisplay.list);
@@ -84,6 +95,21 @@ app.get('/characterdisplay', characterdisplay.list);
 
 app.post('/favoriteCreator', favoriteCreators.insertcreators);
 app.post('/favoriteCharacters', favoriteCharacters.insertcharacters);
+app.post('/favoriteComics', favoriteComics.insertcomics);
+app.post('/favoriteSeries', favoriteSeries.insertseries);
+
+app.get('/faveCreators', favoriteCreators.favorites);
+app.get('/faveCharacters', favoriteCharacters.favorites);
+app.get('/faveComics', favoriteComics.favorites);
+app.get('/faveSeries', favoriteSeries.favorites);
+
+app.post('/recommended', recommendations.rec);
+
+app.post('/addCreator', additems.addcreator);
+app.post('/addComic', additems.addcomic);
+app.post('/addSeries', additems.addseries);
+app.post('/addCharacter', additems.addchar);
+
 
 app.listen(app.get('port'), () => {
     console.log('Node application is running on PORT 8080');
