@@ -64,19 +64,20 @@ td {
                         Comic Database
                     </a>
                 </li>
-                 <li>
-                    <a href="/profile.html">My Profile Page</a>
+                <li>
+                    <a href="/profile">My Profile Page</a>
                 </li>
                 <li>                    
                     <a href = "/userdisplay"> Search </a>
                 </li>
                 <li>
                     <a href = "/addtodatabase"> Contribute </a>
-                    </form>
-                </a>
                 </li>
                 <li>
                     <a href="/about.html">About</a>
+                </li>
+                <li>
+                    <a href="/favorites">Favorites </a>
                 </li>
             </ul>
         </div>
@@ -122,6 +123,13 @@ td {
                 <td>{{this.id}}</td>
                 <td>{{this.title}}</td>
                 <td>{{this.description}}</td>
+                <td> <img src="{{this.thumbnail}}.{{this.extension}}" height="40" width="40"> </td>
+
+                <td>
+                <form class="formClass" method="POST" action="/favoriteSeries">
+                  <input type="submit" name="{{this.id}}" value="{{this.title}}">
+                </form>
+                </td>
             </tr>
         {{/each}}
     </tbody>
