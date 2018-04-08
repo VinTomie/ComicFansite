@@ -37,7 +37,7 @@ exports.insertcharacters = (req, res) => {
   	}
   });	
 
-  var characters = ('SELECT Characters.id, Characters.cname, Characters.descrip, Characters.thumbnail, Characters.thumbnail_extension FROM favoriteCharacters JOIN Characters on (Characters.id = favoriteCharacters.charID AND favoriteCharacters.user = ?)');
+  var characters = ('SELECT Characters.id, Characters.cname, Characters.descrip, Characters.thumbnail, Characters.thumbnail_extension From favoriteCharacters Join Characters on (Characters.id = charID AND user = ?)');
   db.query(characters, [userid], (error, results, fields) => {
   	if (error) {
   		console.log("Error: ", error);
@@ -48,4 +48,21 @@ exports.insertcharacters = (req, res) => {
   		res.render('favoriteCharacters', {characters: results, name: req.session.firstname});
   	}
   });
+}
+
+exports.favorites = (req, res) => {
+  var userid = req.session.userid;
+
+  var characters = ('SELECT Characters.id, Characters.cname, Characters.descrip, Characters.thumbnail, Characters.thumbnail_extension From favoriteCharacters Join Characters on (Characters.id = charID AND user = ?)');
+  db.query(characters, [userid], (error, results, fields) => {
+    if (error) {
+      console.log("Error: ", error);
+      res.send("error");
+    }
+    else {
+      console.log("We are rendering the page");
+      res.render('favoriteCharacters', {characters: results, name: req.session.firstname});
+    }
+  });
+
 }
