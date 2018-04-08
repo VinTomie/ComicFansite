@@ -1,6 +1,6 @@
 exports.list = (req, res) => {
 	console.log("we have activated characterdisplay.js\n");
-	db.query('SELECT * FROM Characters', (error, results, fields) => 
+	db.query('SELECT C.* from Characters C Where C.id not in (select charID from favoriteCharacters where user = ?)', [req.session.userid], (error, results, fields) => 
 	{
 		console.log('we did a query');
 		if(error) 
