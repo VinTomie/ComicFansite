@@ -28,7 +28,19 @@ exports.signup = (req, res) => {
                 "code": 200,
                 "success": "User successfully signed up"
             });*/
-            res.render('profile.html', {fname: User.fname});
+            var top10 = ('SELECT Series.*, count(Series) FROM favoriteSeries right join Series on favoriteSeries.series = Series.id group by series order by count(series) desc limit 10');
+                    db.query(top10, (error, results, fields) => {
+                        if(error)
+                        {
+                            res.send("Error: ", error);
+                        }
+                        else
+                        {
+                            res.render('profile', {trending: results, fname: req.session.firstname});
+
+                        }
+
+                    });
         }
     });
 }
@@ -59,7 +71,20 @@ exports.login = (req, res) => {
                     req.session.firstname = firstname;
                     console.log(req.session.userid);
                     console.log(req.session.firstname);
-                	res.render('profile.html', {fname: firstname});
+
+                    var top10 = ('SELECT Series.*, count(Series) FROM favoriteSeries right join Series on favoriteSeries.series = Series.id group by series order by count(series) desc limit 10');
+                    db.query(top10, (error, results, fields) => {
+                        if(error)
+                        {
+                            res.send("Error: ", error);
+                        }
+                        else
+                        {
+                            res.render('profile', {trending: results, fname: firstname});
+
+                        }
+
+                    });
                     /*res.send({
                       "code": 200,
                       "success": "Login successful"
