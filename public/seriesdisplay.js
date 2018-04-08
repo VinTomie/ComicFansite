@@ -1,6 +1,6 @@
 exports.list = (req, res) => {
 	console.log("we have activated seriesdisplay.js\n");
-	db.query('SELECT * FROM Series', (error, results, fields) => 
+	db.query('SELECT S.* from Series S Where S.id not in (select series from favoriteSeries where user = ?)', [req.session.userid], (error, results, fields) => 
 	{
 		console.log('we did a query');
 		if(error) 
