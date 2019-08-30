@@ -41,10 +41,10 @@ if(process.env.JAWSDB_URL) { /* Heroku remote database environment variable */
     console.log("We connected to Jaws\n");
 } else {
     connection = mysql.createConnection({
-      host      : 'comicdb.cc24nnrynf7v.us-east-2.rds.amazonaws.com',
-      user      : 'comic',
-      password  : 'Comic',
-      database  : 'ComicArchive'
+      host      : 'You',
+      user      : 'Cant',
+      password  : 'See',
+      database  : 'This'
     });
 }
 
